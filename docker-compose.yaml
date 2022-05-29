@@ -1,0 +1,32 @@
+version: '3.1'
+
+services:
+  db:
+    container_name: android_db
+    image: postgres:13-alpine
+    ports:
+      - "6432:6432"
+    environment:
+      - PGPORT=6432
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=android
+    volumes:
+      - "db-data:/var/lib/postgresql/data"
+
+
+  app:
+    container_name: app
+    build:
+      context: .
+      dockerfile: /env/Dockerfile
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    image: 'app'
+    ports:
+      - "8091:8091"
+    depends_on:
+      - db
+
+volumes:
+  db-data:
