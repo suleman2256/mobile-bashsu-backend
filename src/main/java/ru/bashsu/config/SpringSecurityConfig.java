@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.csrf.CsrfFilter;
@@ -46,8 +47,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                     .csrf().ignoringAntMatchers("/**")
                 .and()
                     .authorizeRequests()
-                    .antMatchers("/api/auth/login")
-                    .authenticated()
+                    .antMatchers("/swagger-ui/**").permitAll()
+                    .antMatchers("/api/auth/login").authenticated()
                 .and()
                     .httpBasic()
                     .authenticationEntryPoint(((request, response, e) -> resolver.resolveException(request, response, null, e)));
