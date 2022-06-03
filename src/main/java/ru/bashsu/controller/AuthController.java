@@ -25,7 +25,8 @@ public class AuthController {
     private EmployeeService employeeService;
 
     @PostMapping(path = "/login")
-    public @ResponseBody Employee getAuthUser() {
+    public @ResponseBody
+    Employee getAuthUser() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth == null) {
             return null;
