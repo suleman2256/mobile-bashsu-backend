@@ -17,5 +17,5 @@ import java.util.List;
 public class EmployeeList implements Serializable {
 
     @ApiModelProperty(value = "Студенты")
-    List<Long> employees = new ArrayList<>();
+    List<Employee> employees = new ArrayList<>();
 }

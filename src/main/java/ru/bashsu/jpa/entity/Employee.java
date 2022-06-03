@@ -34,15 +34,15 @@ public class Employee {
     @ApiModelProperty(value = "Отчество студента")
     private String middleName;
 
-    @Column(name = "email", columnDefinition = "VARCHAR(255)")
+    @Column(name = "email", columnDefinition = "VARCHAR(255)", unique = true)
     @ApiModelProperty(value = "Почта студента")
     private String email;
 
-    @Column(name = "login", columnDefinition = "VARCHAR(255)", nullable = false)
+    @Column(name = "login", columnDefinition = "VARCHAR(255)", nullable = false, unique = true)
     @ApiModelProperty(value = "Логин студента")
     private String login;
 
-    @Column(name = "phone_number", columnDefinition = "VARCHAR(50)", nullable = false)
+    @Column(name = "phone_number", columnDefinition = "VARCHAR(50)", nullable = false, unique = true)
     @ApiModelProperty(value = "Логин студента")
     private String phoneNumber;
 

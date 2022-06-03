@@ -11,9 +11,11 @@ import ru.bashsu.jpa.entity.Employee;
 import ru.bashsu.jpa.repository.EmployeeRepository;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -56,6 +58,6 @@ public class EmployeeService implements UserDetailsService {
     }
 
     public List<Employee> getAll() {
-        return employeeRepository.findAll();
+        return employeeRepository.findAll().stream().sorted(Comparator.comparing(Employee::getId)).collect(Collectors.toList());
     }
 }

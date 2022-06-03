@@ -13,6 +13,8 @@ import ru.bashsu.dto.RestResponse;
 import ru.bashsu.jpa.entity.Notification;
 import ru.bashsu.service.NotificationService;
 
+import java.util.List;
+
 @Slf4j
 @RestController
 @RequiredArgsConstructor
@@ -66,5 +68,19 @@ public class NotificationController {
             return RestResponse.error(HttpStatus.BAD_REQUEST, msg);
         }
 
+    }
+
+    @ApiOperation("Получение уведомления по Login")
+    @GetMapping("/filter/{login}")
+    public ResponseEntity<RestResponse<List<Notification>>> getByLogin(
+            @ApiParam("Логин") @PathVariable String login) {
+        try {
+            List<Notification> result = notificationService.getByLogin(login);
+            return RestResponse.success(result);
+        } catch (Exception e) {
+            val msg = String.format("Ошибка получения студента по Login [%s]", login);
+            log.error(msg, e);
+            return RestResponse.error(HttpStatus.BAD_REQUEST, msg);
+        }
     }
 }

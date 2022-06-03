@@ -13,6 +13,7 @@ import ru.bashsu.consts.Status;
 import ru.bashsu.dto.RestResponse;
 import ru.bashsu.jpa.entity.Employee;
 import ru.bashsu.service.EmployeeService;
+import ru.bashsu.service.NotificationService;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
@@ -26,6 +27,7 @@ import java.util.List;
 public class EmployeeController {
 
     private final EmployeeService employeeService;
+    private final NotificationService notificationService;
 
     @ApiOperation("Получение студента по ID")
     @GetMapping("/{id}")
@@ -91,7 +93,7 @@ public class EmployeeController {
     @ApiOperation("Получение студента по Login")
     @GetMapping("/filter/{login}")
     public ResponseEntity<RestResponse<Employee>> getEmployeeByLogin(
-            @ApiParam("ID") @PathVariable String login) {
+            @ApiParam("Логин") @PathVariable String login) {
         try {
             Employee result = employeeService.getByLogin(login);
             return RestResponse.success(result);
