@@ -15,6 +15,7 @@ import ru.bashsu.jpa.entity.Employee;
 import ru.bashsu.service.EmployeeService;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.List;
 
 
 @Slf4j
@@ -36,6 +37,20 @@ public class EmployeeController {
             return RestResponse.success(result);
         } catch (Exception e) {
             val msg = String.format("Ошибка получения студента по ID [%s]", id);
+            log.error(msg, e);
+            return RestResponse.error(HttpStatus.BAD_REQUEST, msg);
+        }
+    }
+
+    @ApiOperation("Получение всех студентов")
+    @GetMapping("/all")
+    public ResponseEntity<RestResponse<List<Employee>>> getAllEmployee() {
+
+        try {
+            List<Employee> result = employeeService.getAll();
+            return RestResponse.success(result);
+        } catch (Exception e) {
+            val msg = "Ошибка получения студентов.";
             log.error(msg, e);
             return RestResponse.error(HttpStatus.BAD_REQUEST, msg);
         }

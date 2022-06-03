@@ -13,6 +13,7 @@ import ru.bashsu.jpa.repository.EmployeeRepository;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 
 @Slf4j
@@ -53,5 +54,9 @@ public class EmployeeService implements UserDetailsService {
         }
 
         return new User(e.getLogin(), e.getPassword(), true, true, true, true, new HashSet<>());
+    }
+
+    public List<Employee> getAll() {
+        return employeeRepository.findAll();
     }
 }

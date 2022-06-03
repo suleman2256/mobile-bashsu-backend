@@ -5,13 +5,13 @@ logging.level.org.springframework.web: DEBUG
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://db:6432/android
+    url: jdbc:postgresql://db:6432/android?currentSchema=dev
     username: postgres
     password: postgres
   jpa:
     properties.hibernate.jdbc.lob.non_contextual_creation: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
