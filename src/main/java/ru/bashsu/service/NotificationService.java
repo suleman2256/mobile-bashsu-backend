@@ -9,7 +9,9 @@ import ru.bashsu.jpa.repository.NotificationRepository;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -48,6 +50,6 @@ public class NotificationService {
             }
         }
 
-        return result;
+        return result.stream().sorted(Comparator.comparing(Notification::getId).reversed()).collect(Collectors.toList());
     }
 }

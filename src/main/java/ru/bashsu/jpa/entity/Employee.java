@@ -13,7 +13,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "employee")
-@ApiModel(description = "Студенты")
+@ApiModel(description = "Студент")
 public class Employee {
 
     @Id

@@ -19,7 +19,7 @@ services:
     container_name: app
     build:
       context: .
-      dockerfile: /env/Dockerfile
+      dockerfile: env/Dockerfile
     environment:
       - SPRING_PROFILES_ACTIVE=docker
     image: 'app'

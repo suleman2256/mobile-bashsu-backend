@@ -72,15 +72,15 @@ public class NotificationController {
 
     @ApiOperation("Получение уведомления по Login")
     @GetMapping("/filter/{login}")
-    public ResponseEntity<RestResponse<List<Notification>>> getByLogin(
+    public List<Notification> getByLogin(
             @ApiParam("Логин") @PathVariable String login) {
         try {
-            List<Notification> result = notificationService.getByLogin(login);
-            return RestResponse.success(result);
+            return notificationService.getByLogin(login);
         } catch (Exception e) {
             val msg = String.format("Ошибка получения студента по Login [%s]", login);
             log.error(msg, e);
-            return RestResponse.error(HttpStatus.BAD_REQUEST, msg);
         }
+
+        return null;
     }
 }
